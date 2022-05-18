@@ -1,12 +1,16 @@
-from cmath import nan
+import streamlit as st
 import pandas as pd
-import seaborn as sns
+import json
+import folium
 import numpy as np
-from plotly import express as px
-from matplotlib import pyplot as plt 
-from matplotlib import gridspec
-from sqlalchemy import false, true
-import streamlit as st 
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+from plotly                   import express as px
+from folium.plugins           import MarkerCluster
+from streamlit_folium         import folium_static
+from matplotlib.pyplot        import figimage
+from distutils.fancy_getopt   import OptionDummy
 
 st.title('Aplicacion de prueba')
 
