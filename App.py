@@ -1,27 +1,27 @@
 import streamlit as st
 import pandas as pd
-import json
-import folium
-import numpy as np
-import seaborn as sns
-import matplotlib.pyplot as plt
+##import json
+##import folium
+##import numpy as np
+##import seaborn as sns
+##import matplotlib.pyplot as plt
 
 from plotly                   import express as px
-from folium.plugins           import MarkerCluster
-from streamlit_folium         import folium_static
-from matplotlib.pyplot        import figimage
-from distutils.fancy_getopt   import OptionDummy
+##from folium.plugins           import MarkerCluster
+##from streamlit_folium         import folium_static
+##from matplotlib.pyplot        import figimage
+##rom distutils.fancy_getopt   import OptionDummy
 
 st.title('Aplicacion de prueba')
 
 st.write('**Datos de king country, USA (20xx a 20xx)**:')
 data=pd.read_csv('Data/kc_house_data.csv')
 st.dataframe(data)
-houses=data[['id','lat','long','price','sqft_living']]
 
-#no usar
+
+##no usar
 ##st.table(data)
-#sale la tabla entera en la pagina
+##sale la tabla entera en la pagina
 
 
 ##primera parte // mostrar datos
@@ -182,16 +182,24 @@ with st.expander("Resultados con valores mayor o igual al filtrado",expanded=0):
 with st.expander("Cruce de datos filtrados",expanded=0):
      st.write('Proximamente! :sunglasses:')
 
-# if 'Baños' in OptFiltro and 'Habitaciones' in OptFiltro:
-#      if Bathrooms and Bedrooms>0:
-#           st.write('Hay {} casas con {} habitacions y {} baños'.format(data[(data['bathrooms']>=Bathrooms) & (data['bedrooms'] >=Bedrooms )].shape[0],Bedrooms,Bathrooms))
+## if 'Baños' in OptFiltro and 'Habitaciones' in OptFiltro:
+##      if Bathrooms and Bedrooms>0:
+##           st.write('Hay {} casas con {} habitacions y {} baños'.format(data[(data['bathrooms']>=Bathrooms) & (data['bedrooms'] >=Bedrooms )].shape[0],Bedrooms,Bathrooms))
 
 
 ##tercera parte // mostrar graficos
 st.title('Graficas')
 
+houses=data[['id','lat','long','price']]
 
-#pruebas
+Casas = px.scatter_mapbox(houses, lat="lat", lon="long", color="price",
+                  color_continuous_scale=px.colors.sequential.RdBu, size_max=20, zoom=10,
+                  mapbox_style="open-street-map")
+st.write(Casas)
+
+##Otrass opcion para ver el mapa  "open-street-map"   "carto-positron"
+
+##pruebas
 st.title('Pruebas')
 
 valores={'Habitaciones':data['bedrooms'],'Pisos':data['floors'],'Baños':data['bathrooms']}
