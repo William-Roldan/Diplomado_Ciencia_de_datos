@@ -1,16 +1,16 @@
 import streamlit as st
 import pandas as pd
-##import json
+import json
 import folium
-##import numpy as np
-##import seaborn as sns
-##import matplotlib.pyplot as plt
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
 
 from plotly                   import express as px
-##from folium.plugins           import MarkerCluster
-##from streamlit_folium         import folium_static
-##from matplotlib.pyplot        import figimage
-##rom distutils.fancy_getopt   import OptionDummy
+from folium.plugins           import MarkerCluster
+from streamlit_folium         import folium_static
+from matplotlib.pyplot        import figimage
+rom distutils.fancy_getopt   import OptionDummy
 
 st.title('Aplicacion de prueba')
 
