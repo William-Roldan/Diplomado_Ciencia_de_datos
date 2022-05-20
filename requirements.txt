@@ -1,9 +1,11 @@
-matplotlib
 streamlit
 pandas
-seaborn
+json
+folium
 numpy
+seaborn
+matplotlib
 plotly
 folium
 streamlit_folium
-json
+
