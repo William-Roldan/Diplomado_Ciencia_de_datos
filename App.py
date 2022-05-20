@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 ##import json
-##import folium
+import folium
 ##import numpy as np
 ##import seaborn as sns
 ##import matplotlib.pyplot as plt
