@@ -4,7 +4,7 @@ import pandas as pd
 
 st.set_page_config(page_title="Inicio",page_icon="sunglasses",)
 
-data = pd.read_csv('Data/kc_house_data.csv')
+data=pd.read_csv('kc_house_data.csv')
 
 st.title('VENTA DE CASAS EN KING COUNT, WA (USA)')
 st.header('PROPUESTO POR: [William Roldan](https://github.com/William-Roldan)')
