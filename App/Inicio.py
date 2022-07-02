@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 
 
-#st.set_page_config(page_title="Inicio",page_icon="sunglasses",)
+st.set_page_config(page_title="Inicio",page_icon="sunglasses",)
 
 data=pd.read_csv('Data/kc_house_data.csv')
 
@@ -42,19 +42,3 @@ with st.expander("Detalles de las Columnas",expanded=0):
 #with st.expander("Tabla",expanded=0):
 #     st.write('**Base de Datos House Sales in King County**')
 st.dataframe(data)
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-
