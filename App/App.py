@@ -4,7 +4,7 @@ import pandas as pd
 
 st.set_page_config(page_title="Inicio",page_icon="sunglasses",)
 
-@st.cache
+#@st.cache
 def get_data():
      url = 'https://raw.githubusercontent.com/William-Roldan/Diplomado_Ciencia_de_datos/master/App/Data/kc_house_data.csv?token=GHSAT0AAAAAABWG4FZEPCYGSNYBK6YJHTRSYWAMQYA'
      return pd.read_csv(url)
