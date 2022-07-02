@@ -37,7 +37,7 @@ with st.expander("Detalles de las Columnas",expanded=0):
      - sqft_lot15: Los pies cuadrados de los lotes de terreno de los 15 vecinos más cercanos
           """)
 
-data=pd.read_csv('Data/kc_house_data.csv')
+data=pd.read_csv('/Data/kc_house_data.csv')
 with st.expander("Tabla",expanded=0):
      st.write('**Base de Datos House Sales in King County**')
      st.dataframe(data)
