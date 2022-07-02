@@ -10,7 +10,6 @@ def get_data():
 data = get_data()
 
 st.header('Graficas')
-st.sidebar.header('Proximamente! :sunglasses:')
 
 try:
         numeric_columns=list(data.select_dtypes(['float','int']).columns)
@@ -21,9 +20,10 @@ except Exception as e:
 
 chart_select=st.sidebar.selectbox(
     label="select the chart type",
-    options=['Scatterplots','Lineplots','Histogram','Boxplot']
+    options=['Scatterplots','Histogram','Boxplot']
 )
 
+# quite la opcion de 'Lineplots', las graficas no son enteendibles
 
 if chart_select=='Scatterplots':
     st.sidebar.subheader("scatterplot settings")
@@ -36,16 +36,16 @@ if chart_select=='Scatterplots':
     except Exception as e:
         print(e)
 
-if chart_select=='Lineplots':
-    st.sidebar.subheader("Lineplot settings")
-    try:
-        X_values=st.sidebar.selectbox('X axis', options=numeric_columns)
-        Y_values=st.sidebar.selectbox('Y axis', options=numeric_columns)
-        plot2=px.line(data_frame=data,x=X_values,y=Y_values)
-        #Mostrar la grafica
-        st.plotly_chart(plot2)
-    except Exception as e:
-        print(e)
+# if chart_select=='Lineplots':
+#     st.sidebar.subheader("Lineplot settings")
+#     try:
+#         X_values=st.sidebar.selectbox('X axis', options=numeric_columns)
+#         Y_values=st.sidebar.selectbox('Y axis', options=numeric_columns)
+#         plot2=px.line(data_frame=data,x=X_values,y=Y_values)
+#         #Mostrar la grafica
+#         st.plotly_chart(plot2)
+#     except Exception as e:
+#         print(e)
 
 if chart_select=='Histogram':
     st.sidebar.subheader("Histogram settings")
