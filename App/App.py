@@ -6,7 +6,7 @@ st.set_page_config(page_title="Inicio",page_icon="sunglasses",)
 
 #@st.cache
 def get_data():
-     url = 'https://raw.githubusercontent.com/William-Roldan/Diplomado_Ciencia_de_datos/master/App/Data/kc_house_data.csv?token=GHSAT0AAAAAABWG4FZEPCYGSNYBK6YJHTRSYWAMQYA'
+     url = 'https://raw.githubusercontent.com/sebmatecho/CienciaDeDatos/master/ProyectoPreciosCasas/data/kc_house_data.csv'
      return pd.read_csv(url)
 
 data = get_data()
