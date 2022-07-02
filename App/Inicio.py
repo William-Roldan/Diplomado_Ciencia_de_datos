@@ -4,6 +4,7 @@ import pandas as pd
 
 st.set_page_config(page_title="Inicio",page_icon="sunglasses",)
 
+data=pd.read_csv('Data/kc_house_data.csv')
 
 st.title('VENTA DE CASAS EN KING COUNT, WA (USA)')
 st.header('PROPUESTO POR: [William Roldan](https://github.com/William-Roldan)')
@@ -37,7 +38,7 @@ with st.expander("Detalles de las Columnas",expanded=0):
      - sqft_lot15: Los pies cuadrados de los lotes de terreno de los 15 vecinos más cercanos
           """)
 
-data=pd.read_csv('/Data/kc_house_data.csv')
+
 with st.expander("Tabla",expanded=0):
      st.write('**Base de Datos House Sales in King County**')
      st.dataframe(data)
