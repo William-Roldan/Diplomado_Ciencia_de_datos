@@ -2,9 +2,12 @@ import streamlit as st
 import pandas as pd
 from matplotlib import pyplot as plt
 
-data=pd.read_csv('Data/kc_house_data.csv')
+@st.cache
+def get_data():
+     url = 'https://raw.githubusercontent.com/sebmatecho/CienciaDeDatos/master/ProyectoPreciosCasas/data/kc_house_data.csv'
+     return pd.read_csv(url)
 
-st.set_page_config(page_title="Plotting Demo", page_icon="📈")
+data = get_data()
 
 st.write('Proximamente! :sunglasses:')
 st.sidebar.header('Proximamente! :sunglasses:')
