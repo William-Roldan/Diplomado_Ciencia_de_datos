@@ -10,7 +10,7 @@ st.header('PROPUESTO POR: [William Roldan](https://github.com/William-Roldan)')
 
 
 st.write('Se hizo uso de la base de datos de [Kaggle](https://www.kaggle.com/datasets/harlfoxem/housesalesprediction), los datos incluyen viviendas vendidas entre mayo de 2014 y mayo de 2015.')
-st.write('La base de datos nos da información sobre 18 características de las casas que se especifican en el encabezado de cada columna de la base de datos:')
+st.write('La base de datos nos da información de 18 características distribuidas en columna de la base de datos:')
 
 with st.expander("Detalles de las Columnas",expanded=0):
      st.write("""
