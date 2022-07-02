@@ -9,8 +9,6 @@ def get_data():
 
 data = get_data()
 
-st.set_page_config(page_title="Plotting", page_icon="📊")
-
 st.header('Graficas')
 st.sidebar.header('Proximamente! :sunglasses:')
 

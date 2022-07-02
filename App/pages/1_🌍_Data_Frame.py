@@ -3,8 +3,6 @@ import pandas as pd
 
 from plotly                   import express as px
 
-st.set_page_config(page_title="Plotting Demo", page_icon="🌍")
-
 @st.cache
 def get_data():
      url = 'https://raw.githubusercontent.com/sebmatecho/CienciaDeDatos/master/ProyectoPreciosCasas/data/kc_house_data.csv'
@@ -178,8 +176,8 @@ with st.expander("Resultados con valores mayor o igual al filtrado",expanded=0):
           if Grade>0:
                st.write('Hay {} casas con un Indice de construccion mayor o igual a {}'.format(data[data['grade']>=Grade].shape[0],Grade))
 
-with st.expander("Cruce de datos filtrados",expanded=0):
-     st.write('Proximamente! :sunglasses:')
+# with st.expander("Cruce de datos filtrados",expanded=0):
+#      st.write('Proximamente! :sunglasses:')
 
 ## if 'Baños' and 'Habitaciones' in OptFiltro:
 ##      if Bathrooms and Bedrooms>0:
