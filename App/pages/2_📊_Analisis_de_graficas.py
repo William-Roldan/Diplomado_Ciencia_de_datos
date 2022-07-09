@@ -4,7 +4,7 @@ from plotly import express as px
 
 @st.cache
 def get_data():
-     url = 'https://raw.githubusercontent.com/sebmatecho/CienciaDeDatos/master/ProyectoPreciosCasas/data/kc_house_data.csv'
+     url = 'https://raw.githubusercontent.com/William-Roldan/Diplomado_Ciencia_de_datos/master/App/Data/kc_house_data.csv'
      return pd.read_csv(url)
 
 data = get_data()
@@ -19,11 +19,11 @@ except Exception as e:
 
 
 chart_select=st.sidebar.selectbox(
-    label="select the chart type",
+    label="Seleccione el tipo de grafica",
     options=['Scatterplots','Histogram','Boxplot']
 )
 
-# quite la opcion de 'Lineplots', las graficas no son enteendibles
+# quite la opcion de 'Lineplots', las graficas no son entendibles
 
 if chart_select=='Scatterplots':
     st.sidebar.subheader("scatterplot settings")

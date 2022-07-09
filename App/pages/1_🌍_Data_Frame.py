@@ -5,12 +5,11 @@ from plotly                   import express as px
 
 @st.cache
 def get_data():
-     url = 'https://raw.githubusercontent.com/sebmatecho/CienciaDeDatos/master/ProyectoPreciosCasas/data/kc_house_data.csv'
+     url = 'https://raw.githubusercontent.com/William-Roldan/Diplomado_Ciencia_de_datos/master/App/Data/kc_house_data.csv'
      return pd.read_csv(url)
 
 data = get_data()
 
-st.sidebar.header('Proximamente! :sunglasses:')
 
 with st.sidebar:
      ##segunda parte // Filtrar datos
@@ -18,8 +17,7 @@ with st.sidebar:
      ##forma de seleccionarlos los datos para el filtro
      OptFiltro = st.multiselect(
           'Que quieres filtrar',
-          ['Precios','Habitaciones', 'Baños', 'Metros cuadrados (Espacio habitable)','Pisos','Vista al mar','Indice de construccion','Condicion'],
-          ['Habitaciones', 'Baños','Pisos'])
+          ['Precios','Habitaciones', 'Baños', 'Metros cuadrados (Espacio habitable)','Pisos','Vista al mar','Indice de construccion','Condicion'],['Precios','Metros cuadrados (Espacio habitable)'])
 
      with st.expander("Mis Filtros",expanded=1):
           if 'Precios' in OptFiltro:
@@ -50,8 +48,40 @@ with st.sidebar:
 st.title('AQUI PUEDE FILTRAR LA INFORMACION BASICA DE LA BASE DE DATOS')
 st.write('**Datos de king country, USA (ventas entre 2014 a 2015)**:')
 
+
+st.write('**TABLA DE DATOS (Sin filtro)**:')
+with st.expander("Datos",expanded=0):
+     st.dataframe(data)
+
+st.write('**Casas en el periodo analisado:**','Disponibles {} casas'.format(data['id'].nunique()))
+
+##primera parte // mostrar datos
+
+with st.expander("Mas barata y mas cara"):
+     st.write('**Casa mas barata:**')
+     st.dataframe(data[data['price']==data['price'].min()])
+
+     st.write('**Casa mas cara:**')
+     st.dataframe(data[data['price']==data['price'].max()])
+
+##tercera parte // mostrar graficos
+st.title('Ubicacion de las propiedades (Sin filtro)')
+st.write('Breve descripción de la ubicación de las casas y su precio')
+
+houses=data[['id','lat','long','price']]
+
+Casas = px.scatter_mapbox(houses, lat="lat", lon="long", color="price",
+                  color_continuous_scale=px.colors.sequential.RdBu, size_max=20, zoom=10,
+                  mapbox_style="open-street-map")
+st.write(Casas)
+
+##Otrass opcion para ver el mapa  "open-street-map"   "carto-positron"
+
+
 st.title('FILTROS')
 ##datos filtrados
+data_Auxfiltro=data.copy()
+
 
 if 'Precios' in OptFiltro:
      st.write('**Precio:**', Price)
@@ -88,23 +118,9 @@ if 'Indice de construccion' in OptFiltro:
           st.write('**Indice de construccion:**','Construccion y diseño de alta calidad')
 
 
-st.write('**TABLA DE DATOS**:')
-with st.expander("Datos",expanded=0):
-     st.dataframe(data)
-
 ##no usar
 ##st.table(data)
 ##sale la tabla entera en la pagina
-
-##primera parte // mostrar datos
-st.write('**Casas en el periodo analisado:**','Disponibles {} casas'.format(data['id'].nunique()))
-
-with st.expander("Mas barata y mas cara"):
-     st.write('**Casa mas barata:**')
-     st.dataframe(data[data['price']==data['price'].min()])
-
-     st.write('**Casa mas cara:**')
-     st.dataframe(data[data['price']==data['price'].max()])
 
 
 ##Inf datos en el filtro
@@ -184,16 +200,62 @@ with st.expander("Resultados con valores mayor o igual al filtrado",expanded=0):
 ##           st.write('Hay {} casas con {} habitacions y {} baños'.format(data[(data['bathrooms']>=Bathrooms) & (data['bedrooms'] >=Bedrooms )].shape[0],Bedrooms,Bathrooms))
 
 
+st.write('**TABLA DE DATOS (Filtro)**:')
+with st.expander("Datos",expanded=0):
+     if 'Precios' in OptFiltro:
+          if Price>0:
+               data_Auxfiltro = data_Auxfiltro.loc[data_Auxfiltro['price']>=Price]
+               
+     if 'Habitaciones' in OptFiltro:
+          if Bedrooms>0:
+               data_Auxfiltro = data_Auxfiltro.loc[data_Auxfiltro['bedrooms']>=Bedrooms]
+
+     if 'Baños' in OptFiltro:
+          if Bathrooms>0:
+               data_Auxfiltro = data_Auxfiltro.loc[data_Auxfiltro['bathrooms']>=Bathrooms]
+
+     if 'Metros cuadrados (Espacio habitable)' in OptFiltro:
+          if Mt2>0:
+               data_Auxfiltro = data_Auxfiltro.loc[data_Auxfiltro['sqft_living']>=Mt2]
+
+     if 'Pisos' in OptFiltro:
+          if Floors>0:
+               data_Auxfiltro = data_Auxfiltro.loc[data_Auxfiltro['floors']>=Floors]
+
+     if 'Vista al mar' in OptFiltro:
+          data_Auxfiltro = data_Auxfiltro.loc[data_Auxfiltro['waterfront']>=Waterfront]
+
+     if 'Condicion' in OptFiltro:
+          if Cond>0:
+               data_Auxfiltro = data_Auxfiltro.loc[data_Auxfiltro['condition']>=Cond]
+
+     if 'Indice de construccion' in OptFiltro:
+          if Grade>0:
+               data_Auxfiltro = data_Auxfiltro.loc[data_Auxfiltro['grade']>=Grade]
+
+     st.dataframe(data_Auxfiltro)
+
+##primera parte // mostrar datos
+
+with st.expander("Mas barata y mas cara"):
+     st.write('**Casa mas barata:**')
+     st.dataframe(data_Auxfiltro[data_Auxfiltro['price']==data_Auxfiltro['price'].min()])
+
+     st.write('**Casa mas cara:**')
+     st.dataframe(data_Auxfiltro[data_Auxfiltro['price']==data_Auxfiltro['price'].max()])
+
+
+st.write('**Casas disponibles (Filtro):**',' {} casas'.format(data_Auxfiltro['id'].nunique()))
+
 ##tercera parte // mostrar graficos
-st.title('Ubicacion de las propiedades')
-st.write('Breve descripción de la ubicación de las casas y su precio')
+st.title('Ubicacion de las propiedades (Filtro)')
+st.write('Breve descripción de la ubicación de las casas y su precio (valores mayores o igual al filtrado)')
 
-houses=data[['id','lat','long','price']]
+housesFiltro=data_Auxfiltro[['id','lat','long','price']]
 
-Casas = px.scatter_mapbox(houses, lat="lat", lon="long", color="price",
+Casas = px.scatter_mapbox(housesFiltro, lat="lat", lon="long", color="price",
                   color_continuous_scale=px.colors.sequential.RdBu, size_max=20, zoom=10,
                   mapbox_style="open-street-map")
 st.write(Casas)
 
 ##Otrass opcion para ver el mapa  "open-street-map"   "carto-positron"
-
